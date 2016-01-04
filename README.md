@@ -29,8 +29,8 @@ Check [Superlumic](https://github.com/superlumic/superlumic) for more documentat
 
 # License
 
-MIT
+GPL
 
 # Author
 
-[Roderik van der Veer](mailto:roderik@superlumic.com) - [@r0derik](https://twitter.com/r0derik)
+[Fabien Jakimowicz](mailto:fabien@jakimowicz.com)
