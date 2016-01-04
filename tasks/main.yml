@@ -14,7 +14,7 @@
   with_items: rbenv_versions
 
 - name: install gems for each rbenv versions
-  shell: "rbenv shell {{ item.ruby_version }} ; (gem list | grep '^{{ item.gems }} ') || gem install {{ item.gems }}"
+  shell: "rbenv shell {{ item.ruby_version }} ; gem install {{ item.gems }}"
   with_items: rbenv_gems_for_versions
 
 - name: set default rbenv versions
