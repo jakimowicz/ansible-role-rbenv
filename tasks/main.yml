@@ -5,7 +5,26 @@
     - rbenv
     - ruby-build
 
+- name: place bashrc configuration file
+  become: yes
+  copy:
+    src: bashrc.rbenv.sh
+    dest: /etc/bashrc.rbenv.sh
+    owner: root
+    group: wheel
+    mode: 0644
+
+- name: add configuration file to bashrc
+  become: yes
+  lineinfile: >
+    dest=/etc/bashrc
+    regexp="bashrc.rbenv.sh"
+    line="if [ -f /etc/bashrc.rbenv.sh ]; then . /etc/bashrc.rbenv.sh; fi"
+    state=present
+    create=true
+
 - name: install gems for system
+  become: yes
   shell: gem install {{ item }}
   with_items: default_system_gems
 
@@ -14,7 +33,7 @@
   with_items: rbenv_versions
 
 - name: install gems for each rbenv versions
-  shell: "rbenv shell {{ item.ruby_version }} ; gem install {{ item.gems }}"
+  shell: "RBENV_VERSION={{ item.ruby_version }} gem install {{ item.gems }}"
   with_items: rbenv_gems_for_versions
 
 - name: set default rbenv versions

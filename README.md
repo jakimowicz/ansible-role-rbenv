@@ -9,6 +9,7 @@ Ansible role to setup rbenv on OSX. This role is part of the Superlumic project 
 ## Dependencies
 
 * [roderik.superlumic-homebrew](https://github.com/superlumic/ansible-role-homebrew)
+* [roderik.superlumic-cli](https://github.com/superlumic/ansible-role-cli)
 
 # Usage
 
