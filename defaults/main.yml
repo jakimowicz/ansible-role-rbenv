@@ -1,0 +1,7 @@
+---
+# defaults file for ansible-role-rbenv
+
+rbenv_versions: []
+rbenv_gems_for_versions: []
+default_rbenv_version: system
+default_system_gems: []

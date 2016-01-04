@@ -1,0 +1,21 @@
+---
+- name: install rbenv and ruby-build
+  homebrew: name={{ item }} state=latest
+  with_items:
+    - rbenv
+    - ruby-build
+
+- name: install gems for system
+  shell: gem install {{ item }}
+  with_items: default_system_gems
+
+- name: install rbenv versions
+  shell: rbenv install {{ item }}
+  with_items: rbenv_versions
+
+- name: install gems for each rbenv versions
+  shell: rbenv shell {{ item.ruby_version }} ; gem install {{ item.gems }}
+  with_items: rbenv_gems_for_versions
+
+- name: set default rbenv versions
+  shell: rbenv global {{ default_rbenv_version }}
