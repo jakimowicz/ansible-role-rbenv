@@ -10,11 +10,11 @@
   with_items: default_system_gems
 
 - name: install rbenv versions
-  shell: rbenv install {{ item }}
+  shell: "(rbenv versions --bare | grep ^{{ item }}$) || rbenv install {{ item }}"
   with_items: rbenv_versions
 
 - name: install gems for each rbenv versions
-  shell: rbenv shell {{ item.ruby_version }} ; gem install {{ item.gems }}
+  shell: "rbenv shell {{ item.ruby_version }} ; (gem list | grep '^{{ item.gems }} ') || gem install {{ item.gems }}"
   with_items: rbenv_gems_for_versions
 
 - name: set default rbenv versions
