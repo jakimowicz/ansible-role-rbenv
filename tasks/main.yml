@@ -26,15 +26,15 @@
 - name: install gems for system
   become: yes
   shell: gem install {{ item }}
-  with_items: {{ default_system_gems }}
+  with_items: "{{ default_system_gems }}"
 
 - name: install rbenv versions
   shell: "(rbenv versions --bare | grep ^{{ item }}$) || rbenv install {{ item }}"
-  with_items: {{ rbenv_versions }}
+  with_items: "{{ rbenv_versions }}"
 
 - name: install gems for each rbenv versions
   shell: 'eval "$(rbenv init -)" ; RBENV_VERSION={{ item.ruby_version }} gem install {{ item.gems }}'
-  with_items: {{ rbenv_gems_for_versions }}
+  with_items: "{{ rbenv_gems_for_versions }}"
 
 - name: set default rbenv versions
   shell: rbenv global {{ default_rbenv_version }}
